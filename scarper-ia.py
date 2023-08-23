@@ -42,6 +42,6 @@ with open(csv_filename, "w", newline="", encoding="utf-8") as csv_file:
             print("Comment:", review["comment"])
             
             
-            csv_writer.writerow(review)
+        csv_writer.writerow(review)
 
     print("file saved")
