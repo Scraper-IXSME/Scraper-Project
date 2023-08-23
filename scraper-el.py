@@ -1,28 +1,41 @@
 from bs4 import BeautifulSoup
 import requests
+import csv
 
 # AmeriSave Mortgage
-page = 1
-next_page = True
+
+csv_file_path = "el-data.csv"
 
 authors = []
-stars = []
+location = []
 date = []
 comments = []
-location = []
+stars = []
 
-while next_page:
+for i in range(1, 30):
     page_to_scrape = requests.get(
-        f"https://www.consumeraffairs.com/finance/amerisave_mortgage.html?page={page}#scroll_to_reviews=true"
+        f"https://www.consumeraffairs.com/finance/amerisave_mortgage.html?page={i}#scroll_to_reviews=true"
     )
     soup = BeautifulSoup(page_to_scrape.text, "html.parser")
     reviews = soup.findAll("div", attrs={"class": "rvw__cntr"})
 
     for review in reviews:
         authors.append(review.find("span", attrs={"class": "rvw__inf-nm"}).text)
+        location.append(review.find("span", attrs={"class": "rvw__inf-lctn"}).text)
+        date.append(review.find("span", attrs={"class": "rvw__rvd-dt"}).text)
+        comments.append(review.find("p").text)
+        star = review.find("meta", attrs={"itemprop": "ratingValue"})
+        if star:
+            stars.append(star.get("content"))
+        else:
+            stars.append("N/A")
 
-    if soup.findAll("div", attrs={"class": "rvw_cntr"}) is None:
-        next_page = False
-    page += 1
 
-print(authors)
+combined_data = zip(authors, location, date, comments, stars)
+
+with open(csv_file_path, mode="w", newline="") as file:
+    writer = csv.writer(file)
+    writer.writerow(
+        ["Author", "Location", "Date", "Comments", "Reviews"]
+    )  # Write header row
+    writer.writerows(combined_data)
