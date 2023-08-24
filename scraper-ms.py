@@ -1,4 +1,3 @@
-# QuickenLoans  Scraper
 import requests
 from bs4 import BeautifulSoup
 import csv
@@ -40,10 +39,10 @@ def write_to_csv(file_path, data):
 csv_path = 'data-ms.csv'
 base_url = 'https://www.consumeraffairs.com/finance/quicken_loans_mortgage.html?page={}'
 
-all_data = []
+data_found = []
 for i in range(1, 34):
     url = base_url.format(i)
     reviews_data = scrape_reviews(url)
-    all_data.extend(reviews_data)
+    data_found.extend(reviews_data)
 
-write_to_csv(csv_path, all_data)
+write_to_csv(csv_path, data_found)
