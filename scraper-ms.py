@@ -6,7 +6,7 @@ import unittest
 
 def scrape_reviews(url):
     page = requests.get(url)
-    page.encoding = 'utf-8'  # Set the page encoding to UTF-8
+    page.encoding = 'utf-8'  # Set encoding to UTF-8
     soup = BeautifulSoup(page.text, 'html.parser')
     reviews = soup.find_all('div', class_='rvw__cntr')
 
@@ -24,7 +24,7 @@ def scrape_reviews(url):
 
         dates.append(review.find('span', class_='rvw__rvd-dt').text)
 
-        # Check if the <p> tag exists before extracting its text
+        # Check if <p> tag exists
         comment_tag = review.find('p')
         comments.append(comment_tag.text if comment_tag else 'No comment')
 
@@ -49,16 +49,16 @@ for i in range(1, 34):
 
 write_to_csv(csv_path, data_found)
 
-#Verify the CSV file using pandas
+#Verify CSV using pandas
 df = pd.read_csv(csv_path)
-print(df.head())  # Display the first few rows of the DataFrame
+print(df.head())  # Display first few rows
 
 class TestCSVData(unittest.TestCase):
     def test_csv_has_data(self):
-        # Read the CSV file using pandas
+        # Read CSV file using pandas
         df = pd.read_csv(csv_path)
 
-        # Check if the DataFrame has any rows (data)
+        # Check if DataFrame has data
         self.assertTrue(len(df) > 0)
 
 if __name__ == '__main__':
