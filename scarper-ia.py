@@ -2,8 +2,6 @@ import csv
 from bs4 import BeautifulSoup
 import requests
 
-
-
 for i in range(6):
     page_num = i + 1
     url = f"https://www.consumeraffairs.com/finance/new-american-funding.html?page={page_num}#scroll_to_reviews=true"
