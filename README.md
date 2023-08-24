@@ -1,6 +1,12 @@
 # Web Scraper-Project 🧼
 
+
 A group project to better understand the Web Scrapping process. 
+=======
+
+Scrapping Consumer reviews - Finance section to extract: 
+    author, stars, date, comments, location
+
 
 In this case, we're working on the [Consumer affairs](https://www.consumeraffairs.com/) website, which contains reviews about thousands of brands! 
 
@@ -46,3 +52,4 @@ This project also involved a few testing practices:
 
 ## License: 
 [![MIT License](https://img.shields.io/github/license/tutim-io/tutim)](https://github.com/tutim-io/tutim/blob/main/LICENSE) 
+
