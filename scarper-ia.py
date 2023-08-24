@@ -1,6 +1,7 @@
 import csv
 from bs4 import BeautifulSoup
 import requests
+# import unittest
 
 
 for i in range(6):
@@ -45,3 +46,11 @@ with open(csv_filename, "w", newline="", encoding="utf-8") as csv_file:
         csv_writer.writerow(review)
 
     print("file saved")
+# class TestScraping(unittest.TestCase):
+#     def test_scraping(self):
+#         with open("ia-data.csv", mode="r") as file:
+#             lines = file.readlines()
+#             self.assertTrue(len(lines) > 0)
+
+
+# print(unittest.main())
