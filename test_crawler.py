@@ -12,14 +12,17 @@ def test_url_response(url):
     except requests.exceptions.RequestException as e:
         return str(e)  # Return the error message
 
+
 def main():
     for i in range(1, 7):
         url = base_url.format(i)
         print(f"Testing URL: {url}")
         response_content = test_url_response(url)
 
+
         if "Error" in response_content:
             print(f"Error response from {url}: {response_content}")
+
         else:
             print(f"Successful response from {url}")
 
