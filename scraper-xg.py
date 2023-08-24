@@ -5,6 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 
+
 csv_path = 'data-xg.csv'
 
 # URL for scrapping the data
