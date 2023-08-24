@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 import csv
+import pandas as pd
+import unittest
 
 def scrape_reviews(url):
     page = requests.get(url)
@@ -46,3 +48,18 @@ for i in range(1, 34):
     data_found.extend(reviews_data)
 
 write_to_csv(csv_path, data_found)
+
+#Verify the CSV file using pandas
+df = pd.read_csv(csv_path)
+print(df.head())  # Display the first few rows of the DataFrame
+
+class TestCSVData(unittest.TestCase):
+    def test_csv_has_data(self):
+        # Read the CSV file using pandas
+        df = pd.read_csv(csv_path)
+
+        # Check if the DataFrame has any rows (data)
+        self.assertTrue(len(df) > 0)
+
+if __name__ == '__main__':
+    unittest.main()
