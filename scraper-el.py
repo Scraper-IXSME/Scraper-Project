@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import csv
+import unittest
 
 # AmeriSave Mortgage
 
@@ -36,6 +37,16 @@ combined_data = zip(authors, location, date, comments, stars)
 with open(csv_file_path, mode="w", newline="") as file:
     writer = csv.writer(file)
     writer.writerow(
-        ["Author", "Location", "Date", "Comments", "Reviews"]
+        ["Author", "Location", "Date", "Comments", "Rating"]
     )  # Write header row
     writer.writerows(combined_data)
+
+
+class TestScraping(unittest.TestCase):
+    def test_scraping(self):
+        with open("el-data.csv", mode="r") as file:
+            lines = file.readlines()
+            self.assertTrue(len(lines) > 0)
+
+
+print(unittest.main())
