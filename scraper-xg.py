@@ -67,10 +67,6 @@ with open(csv_path, mode="w", encoding='utf-8', newline="") as file:
 
 
 
-
-
-
-
 # authors = []
 # stars = []
 # dates = []
